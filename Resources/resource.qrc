@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="Images">
+    <file>dark.png</file>
+    <file>light.png</file>
+    <file>new.png</file>
+    <file>new_window.png</file>
+    <file>open.png</file>
+    <file>refresh.png</file>
+    <file>save.png</file>
+  </qresource>
+</RCC>
