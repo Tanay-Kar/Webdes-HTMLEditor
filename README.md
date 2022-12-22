@@ -11,7 +11,3 @@ Its features include :
 
 ## Installation
 - You have to have python3 or greater installed.
-- Install the required packages 
-```bash
-pip install PyQt5 
-```
