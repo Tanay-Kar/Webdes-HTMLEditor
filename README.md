@@ -39,7 +39,7 @@ python main.py
 Adding a local image requires saving the file
 
 
-Dark theme                 |  Light Theme
+Light theme                |  Dark Theme
 :-------------------------:|:-------------------------:
 ![2022-12-22 14-17-42](https://user-images.githubusercontent.com/93914273/209095313-be70ea30-e69b-4af3-aa7b-9ddcd1a927e1.png) | ![2022-12-22 14-17-41](https://user-images.githubusercontent.com/93914273/209096110-e5c20d80-4e82-4a7f-ae6b-8d5ae1abdc4b.png)
 
