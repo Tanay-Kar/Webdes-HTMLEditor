@@ -41,7 +41,7 @@ class HTMLEditor(QPlainTextEdit):
         self.setUpEditor()
 
     def setUpEditor(self):
-        # define pattern rule #1: highlight ATTRIBUTE header
+        # pattern #1: ATTRIBUTE format
         class_format = QTextCharFormat()
         class_format.setForeground(QtGui.QColor('#0c98f5'))
         class_format.setFontWeight(QFont.Bold)
@@ -69,8 +69,24 @@ class HTMLEditor(QPlainTextEdit):
         quotation_format.setFontWeight(QFont.Bold)
         pattern = r'\"(.*?)\"'  # just the text
         self.highlighter.add_mapping(pattern, quotation_format)
-
-
+        
+        # pattern 3: DOCUMENT format
+        quotation_format = QTextCharFormat()
+        quotation_format.setForeground(QtGui.QColor('#9002d1'))
+        quotation_format.setFontItalic(True)
+        quotation_format.setFontWeight(QFont.Bold)
+        pattern = r'<!DOCTYPE html>'  # just the text
+        self.highlighter.add_mapping(pattern, quotation_format)
+        
+        # pattern 3: TAG-PARANTHESES format
+        quotation_format = QTextCharFormat()
+        quotation_format.setForeground(QtGui.QColor('#fce69a'))
+        quotation_format.setFontItalic(False)
+        quotation_format.setFontWeight(QFont.Bold)
+        pattern = r'<|>'  # just the text
+        self.highlighter.add_mapping(pattern, quotation_format)
+        
+        
         font = QFontDatabase.systemFont(QFontDatabase.FixedFont)
         self.setFont(font)
 

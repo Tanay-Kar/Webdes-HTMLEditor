@@ -1,7 +1,8 @@
-import sys
+import sys , os
 from editor import Editor
 from PyQt5.QtWidgets import QFileDialog,QMessageBox,QApplication,QTextEdit
 from PyQt5.QtCore import QSettings
+from PyQt5.QtGui import QIcon
 from modules.Ui_main import Ui_MainWindow
 import qtvscodestyle as qvsc
 
@@ -10,9 +11,11 @@ class Window(Ui_MainWindow):
         super().__init__(parent)
         self.setupUi(self)
         
+        self.setWindowTitle("WebDes")
+        self.setWindowIcon(QIcon("Resources\icon.png"))
         self.tabWidget.removeTab(0)
         self.create_tab()
-        self.settings = QSettings("Tanay Kar", "HTML Editor")
+        self.settings = QSettings("Tanay Kar", "WebDes")
         self.tabWidget.tabCloseRequested.connect(self.handle_tab_close)
         self.editor = self.tabWidget.currentWidget()
         self.editor = Editor()
@@ -61,6 +64,8 @@ class Window(Ui_MainWindow):
         text = editor.textEdit.toPlainText()
         if not(editor.saved):
             path,_ = QFileDialog.getSaveFileName(self, 'Save File','','HTML files (*.html *.htm *.xhtml);;Text files (*.txt);;All files (*.*)')
+            filename = os.path.basename(path)
+
             # file = open(name,'w')
             # file.write(text)
             # file.close()
@@ -84,6 +89,8 @@ class Window(Ui_MainWindow):
                     
 
             self.tabWidget.setCurrentWidget(editor)
+            self.tabWidget.setTabText(self.tabWidget.currentIndex(),filename)          
+
         else:
             self.statusBar().showMessage("Saved",5)
             
@@ -97,25 +104,29 @@ class Window(Ui_MainWindow):
         self.create_tab()
         editor = self.tabWidget.currentWidget()
         path, _ = QFileDialog.getOpenFileName(self,"Open file", "",'HTML files (*.html *.htm *.xhtml);;Text files (*.txt);;All files (*.*)')
+        filename = os.path.basename(path)
 
         # file = open(name,'w')
         # file.write(text)
         # file.close()
-        
-        with open(path,'r+') as file:
-            
-            editor.textEdit.setPlainText(file.read())
-            editor.update()
-            text = file.read()
-            file.write(text)
-            editor.save(path) 
-            editor.update()
-        
+        if path == '':
+            # Dialog canceled
+            pass
+        else:
+            with open(path,'r+') as file:
+                
+                editor.textEdit.setPlainText(file.read())
+                editor.update()
+                text = file.read()
+                file.write(text)
+                editor.save(path) 
+                editor.update()
+                
         
             # write text in the file
                 
         self.tabWidget.setCurrentWidget(editor)
-                            
+        self.tabWidget.setTabText(self.tabWidget.currentIndex(),filename)          
         
     def handle_tab_close(self, index):
         self.tabWidget.setCurrentIndex(index)
