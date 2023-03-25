@@ -1,10 +1,9 @@
 import sys , os
-from editor import Editor
+from modules.editor import Editor
 from PyQt5.QtWidgets import QFileDialog,QMessageBox,QApplication,QTextEdit
 from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QIcon
 from modules.Ui_main import Ui_MainWindow
-import qtvscodestyle as qvsc
 
 class Window(Ui_MainWindow):
     def __init__(self, parent=None):
@@ -12,7 +11,7 @@ class Window(Ui_MainWindow):
         self.setupUi(self)
         
         self.setWindowTitle("WebDes")
-        self.setWindowIcon(QIcon("Resources\icon.png"))
+        self.setWindowIcon(QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)), "Resources\icon.png")))
         self.tabWidget.removeTab(0)
         self.create_tab()
         self.settings = QSettings("Tanay Kar", "WebDes")
@@ -166,13 +165,19 @@ class Window(Ui_MainWindow):
     
     def set_theme(self, theme):
         if theme == "LIGHT":
-            style = qvsc.load_stylesheet(qvsc.Theme.LIGHT_VS)
+            import Resources.themes.light.resource_light
+
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Resources/themes/light/stylesheet.qss'),'r') as file:
+                style = file.read()
             self.toolBar.actions()[6].setVisible(False)
             self.toolBar.actions()[5].setVisible(True)
             self.settings.setValue('theme',0)
             
         elif theme == "DARK":
-            style = qvsc.load_stylesheet(qvsc.Theme.DARK_VS)
+            import Resources.themes.dark.resource_dark
+
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Resources/themes/dark/stylesheet.qss'),'r') as file:
+                style = file.read()
             self.toolBar.actions()[6].setVisible(True)
             self.toolBar.actions()[5].setVisible(False)
             self.settings.setValue('theme',1)
