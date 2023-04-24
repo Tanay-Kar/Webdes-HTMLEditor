@@ -1,4 +1,4 @@
-# HTML Editor
+# WebDes
 A HTML editor coded in Python using the PyQt5 framework.
 
 This is a real-time updating editor with the capabilities of displaying HTML code/files in a Chromium version 94.0. 4606 engine.
