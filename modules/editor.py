@@ -1,9 +1,15 @@
 import sys
-from modules.Ui_editor import Ui_Form
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
-
-
+from PyQt5.QtGui import QFontMetricsF
+if __name__ != "__main__":
+    # For import scenarios 
+    from modules.Ui_editor import Ui_Form 
+else: 
+    # For individual test scenarios
+    from Ui_editor import Ui_Form
+    
+    
 class Editor(Ui_Form):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -13,8 +19,13 @@ class Editor(Ui_Form):
         self.saved = False
         self.path = str()
         self.cursor_x, self.cursor_y = lambda: self.textEdit.textCursor().columnNumber(),lambda: self.textEdit.textCursor().blockNumber()
+        font = self.textEdit.font()
+        fontMetrics = QFontMetricsF(font)
+        spaceWidth = fontMetrics.width(' ')
+        self.textEdit.setTabStopDistance(spaceWidth * 4)
         print('______INITIALIZED EDITOR_______')
-        
+
+
     def update(self):
         if self.saved :
             self.save_text()
@@ -40,7 +51,8 @@ class Editor(Ui_Form):
     
              
 
-if __name__ == "__main__":        
+if __name__ == "__main__":
+    from Ui_editor import Ui_Form        
     app = QApplication([])
     widget = Editor()
     widget.show()

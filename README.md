@@ -10,9 +10,9 @@ Its features include :
 - Syntax highlighting
 - Multi tabbed editor
 
-## Installation
+## How to run
 
-For building on linux distros , see [this](#building-on-linux-distros)
+For building on linux distros , see [this](#running-on-linux-distros)
 
 - You have to have github and python3 or greater installed .
 - Clone this repository
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-## Building on Linux distros
+## Running on Linux distros
 For some internal bug, the PyQt5 webengine widget may not work as expected on some linux distros. A workaround(tested on Ubuntu, Fedora and Manjaro), is provided for the time being.
 The workaround is based on [this](https://stackoverflow.com/a/73874077) stackoverflow answer
 
@@ -45,7 +45,7 @@ Install QtWebEngine using ```apt```(or the appropriate package manager for your 
 ```bash
 sudo apt install python3-pyqt5.qtwebengine
 ```
-Proceed with the [above](#installation) installation steps.
+Proceed with the [above](#how-to-run) installation steps.
 
 ## Screenshots
 ![2022-12-22 14-04-59](https://user-images.githubusercontent.com/93914273/209092832-a4cfdcec-8a0e-4cfb-9d04-58b3193416e3.gif)
@@ -60,9 +60,32 @@ Light theme                |  Dark Theme
 :-------------------------:|:-------------------------:
 ![2022-12-22 14-17-42](https://user-images.githubusercontent.com/93914273/209095313-be70ea30-e69b-4af3-aa7b-9ddcd1a927e1.png) | ![2022-12-22 14-17-41](https://user-images.githubusercontent.com/93914273/209096110-e5c20d80-4e82-4a7f-ae6b-8d5ae1abdc4b.png)
 
+# Builds
+Apart from the default source codes, I have included the following builds in the [release page of this repository](https://github.com/Tanay-Kar/Webdes-HTMLEditor/releases)
 
-### Note
+- Installer for installing the app
+- A portable version of the app
+
+Additional detail thereof is mentioned in the release page.
+
+# Building Instructions
+### For Windows
+The project has an included setup file for building an exe using cx_freeze.
+
+- Install cx-Freeze using pip
+```bash
+pip install cx-Freeze 
+```
+- Execute ```setup.py``` with ```build``` as the argument
+```bash
+python setup.py build
+```
+
+The exe will be built in the ```\build\exe.win-amd64-3.xx```, named as 'webdes.exe'.
+
+# Note
 As of now , this project has been tested on several linux and windows operating systems. Voulunteers for creating a mac os build and finding bugs in the project in mac os are requested to contact me on [contact.tanaykar@gmail.com](mailto:contact.tanaykar@gmail.com)
+
 # Conclusion
 I hope that this project of mine helps you. Suggestions and features are welcome and as for bugs please inform in the github bug tracker. I will try my best to fix it.
 

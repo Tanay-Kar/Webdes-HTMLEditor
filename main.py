@@ -5,6 +5,8 @@ from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QIcon
 from modules.Ui_main import Ui_MainWindow
 
+
+
 class Window(Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
